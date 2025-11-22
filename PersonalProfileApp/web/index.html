@@ -1,0 +1,263 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>Personal Profile Form</title>
+    <style>
+        /* Body fonts */
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+
+            /* Rainbow gradient */
+            background: linear-gradient(135deg, #ff9f80, #ffe066, #6a4c93, #ff6f91, #ffb347, #c44569);
+            background-size: 1200% 1200%;
+            animation: gradientMove 20s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Decorative floating shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(45px);
+            opacity: 0.5;
+            animation: float 6s ease-in-out infinite alternate;
+        }
+        .shape1 { width: 200px; height: 200px; background: #f4a261; top: 10%; left: 5%; animation-delay: 0s; }
+        .shape2 { width: 250px; height: 250px; background: #e9c46a; bottom: 5%; right: 10%; animation-delay: 2s; }
+        .shape3 { width: 150px; height: 150px; background: #2a9d8f; top: 30%; right: 15%; animation-delay: 4s; }
+
+        @keyframes float { from { transform: translateY(0px); } to { transform: translateY(-35px); } }
+
+        /* Background decorative SVG */
+        .bg-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Tiny circles color */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(#ff6f91 10%, transparent 10%),
+                radial-gradient(#ffe066 10%, transparent 10%),
+                radial-gradient(#6a4c93 10%, transparent 10%),
+                radial-gradient(#ff9671 10%, transparent 10%),
+                radial-gradient(#c44569 10%, transparent 10%);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px, 10px 40px, 40px 10px, 30px 30px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Form container */
+        .form-container {
+            background: rgba(252, 221, 197, 0.3); 
+            padding: 70px 80px;
+            width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 3;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #381a04;
+            margin-bottom: 30px;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        /* Inputs with icons */
+        .input-container {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-container input,
+        .input-container textarea {
+            width: 100%;
+            padding: 14px 40px 14px 14px;
+            border-radius: 12px;
+            border: 1px solid #d8c1a0;
+            background: #fffaf0;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect for input and textarea */
+        .input-container input:hover,
+        .input-container textarea:hover {
+            border-color: #d0874a;
+            box-shadow: 0 0 10px rgba(208,135,74,0.3);
+            background: #fff5e6;
+            transform: translateY(-2px);
+        }
+
+        /* Icon inside input */
+        .input-container .icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #d0874a;
+            transition: all 0.3s ease;
+        }
+
+        /* Icon movement on input hover */
+        .input-container:hover .icon {
+            transform: translateY(-50%) translateX(5px);
+            color: #b46b2a;
+        }
+
+        button {
+            background: #d0874a; 
+            color: white;
+            padding: 14px;
+            border: none;
+            width: 100%;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background: #b46b2a;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Snow effect */
+        .snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0.8; }
+            100% { transform: translateY(100vh) translateX(50px); opacity: 0.2; }
+        }
+
+    </style>
+    <!-- Optional: Use font-awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Decorative floating shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+
+    <!-- Optional SVG background -->
+    <svg class="bg-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#fff6e0" fill-opacity="0.5" d="M0,192L80,181.3C160,171,320,149,480,154.7C640,160,800,192,960,213.3C1120,235,1280,245,1360,250.7L1440,256L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+    </svg>
+
+    <!-- Snow container -->
+    <div class="snow" id="snow"></div>
+
+    <form action="ProfileServlet" method="POST" class="form-container">
+
+        <h2>Personal Profile Form</h2>
+
+        <div class="input-container">
+            <input type="text" name="name" placeholder="Enter your name" required>
+            <i class="fas fa-user icon"></i>
+        </div>
+
+        <div class="input-container">
+            <input type="text" name="studentId" placeholder="Enter student ID" required>
+            <i class="fas fa-id-badge icon"></i>
+        </div>
+
+        <div class="input-container">
+            <input type="text" name="program" placeholder="Enter your program" required>
+            <i class="fas fa-graduation-cap icon"></i>
+        </div>
+
+        <div class="input-container">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <i class="fas fa-envelope icon"></i>
+        </div>
+
+        <div class="input-container">
+            <input type="text" name="hobbies" placeholder="Your hobbies">
+            <i class="fas fa-heart icon"></i>
+        </div>
+
+        <div class="input-container">
+            <textarea name="selfIntro" placeholder="Short self introduction" rows="4"></textarea>
+            <i class="fas fa-pen icon"></i>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Generate snowflakes
+        const snowContainer = document.getElementById("snow");
+        const snowCount = 50;
+        for(let i = 0; i < snowCount; i++){
+            const snowflake = document.createElement("div");
+            snowflake.classList.add("snowflake");
+            const size = Math.random() * 6 + 4;
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+            snowflake.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            snowflake.style.animationDelay = `${Math.random() * 10}s`;
+            snowContainer.appendChild(snowflake);
+        }
+    </script>
+</body>
+</html>
